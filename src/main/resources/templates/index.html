@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>A Primality test </title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="/js/main.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-group">
+                <h3>A Primality Test</h3>
+            </div>
+            <div class="form-group">
+                <form class="form-inline" id="customerForm">
+                    <div class="form-group">
+                        Is
+                        <input type="text" class="form-control" id="input" placeholder="input"/>
+                        prime?
+                    </div>
+                    <button type="submit" class="btn btn-default">Check</button>
+                </form>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-5" id="getResultDiv"></div>
+            </div>
+        </div>
+    </body>
+</html>
