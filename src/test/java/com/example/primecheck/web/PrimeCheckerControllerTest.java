@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.math.BigInteger;
-import java.util.HashMap;
+import java.util.Map;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -33,7 +33,7 @@ public class PrimeCheckerControllerTest extends TestValuesBootstrapper {
 
     @Before
     public void init(){
-        HashMap<String, BigInteger> map = testValues.get(0);
+        Map<String, BigInteger> map = testValues.get(0);
         BigInteger nonprime = map.get("nonprime");
         given(unsignedPrimeCheckerService.isUnsignedPrime(nonprime))
                 .willReturn(false);

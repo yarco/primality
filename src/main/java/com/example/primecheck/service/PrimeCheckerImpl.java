@@ -9,10 +9,11 @@ public class PrimeCheckerImpl implements PrimeChecker {
 
     public boolean isPrime(BigInteger number) {
         BigInteger abs = number.abs();
+        if (abs.equals(BigInteger.TWO)) { return true; }
         if (isMersenne(abs)) {
             return testLucasLehmer(abs);
         }
-        return (abs.testBit(0) && testMillerRabin(abs));
+        return abs.testBit(0) && testMillerRabin(abs);
     }
 
     public boolean isMersenne(BigInteger number) {

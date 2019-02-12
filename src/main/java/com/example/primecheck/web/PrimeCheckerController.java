@@ -34,23 +34,23 @@ public class PrimeCheckerController {
             @RequestParam("input") BigInteger number) {
 
         boolean isPrime = unsignedPrimeCheckerService.isUnsignedPrime(number);
-        return new PrimalityResult(number.toString(), Boolean.valueOf(isPrime).toString());
+        return new PrimalityResult(number.toString(), String.valueOf(isPrime));
     }
 
 
     @ExceptionHandler(value = TypeMismatchException.class)
-    public ResponseEntity<PrimalityResult> handleNotANumberFailure(TypeMismatchException ex, WebRequest request) {
+    public ResponseEntity<PrimalityResult> handleNotANumberFailure(TypeMismatchException e, WebRequest request) {
         PrimalityResult result = new PrimalityResult(
-                ex.getValue().toString(), "input must be a number"
+                e.getValue().toString(), "input must be a number"
         );
         return ResponseEntity.badRequest().body(result);
     }
 
     @ExceptionHandler(value = ConstraintViolationException.class)
-    public ResponseEntity<PrimalityResult> handleValidationFailure(ConstraintViolationException ex,
+    public ResponseEntity<PrimalityResult> handleValidationFailure(ConstraintViolationException e,
                                                                    WebRequest request) {
         // show one validation error to user
-        ConstraintViolation<?> violation = ex.getConstraintViolations().iterator().next();
+        ConstraintViolation<?> violation = e.getConstraintViolations().iterator().next();
         PrimalityResult result = new PrimalityResult(
                 violation.getInvalidValue().toString(),
                 violation.getMessage()

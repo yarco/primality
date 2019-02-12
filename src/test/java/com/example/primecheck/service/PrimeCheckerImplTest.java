@@ -130,19 +130,17 @@ public class PrimeCheckerImplTest extends TestValuesBootstrapper {
 
         HashSet<Future> futures = new HashSet<>();
         for (int i = 0; i < testValues.size(); i++) {
-            HashMap<String, BigInteger> map = testValues.get(i);
+            Map<String, BigInteger> map = testValues.get(i);
 
-
-            BigInteger length = map.get("length");
             BigInteger prime = map.get("prime");
             BigInteger nonprime = map.get("nonprime");
 
-            Future f = executor.submit(() -> {
+            Future future = executor.submit(() -> {
                 PrimeChecker primeChecker = new PrimeCheckerImpl();
                 assertThat(primeChecker.isPrime(prime)).isTrue();
                 assertThat(primeChecker.isPrime(nonprime)).isFalse();
             });
-            futures.add(f);
+            futures.add(future);
         }
         futures.forEach(f -> {
             try {

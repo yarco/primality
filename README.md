@@ -11,7 +11,7 @@ Otherwise, we fall back on using the probabilistic Miller–Rabin primality test
 ## Quick start
 
 Minimal requirements:
-- Java 1.8+
+- Java 1.9+
 - Maven 3.3+
 
 

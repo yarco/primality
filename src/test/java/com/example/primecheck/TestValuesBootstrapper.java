@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestValuesBootstrapper {
 
-    protected ArrayList<HashMap<String, BigInteger>> testValues;
+    protected ArrayList<Map<String, BigInteger>> testValues;
     protected final int SMALL_TEST_SIZE = 5;
     protected final int MEDIUM_TEST_SIZE = 15;
 
