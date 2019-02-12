@@ -25,11 +25,11 @@ A rudimentary web interface can be used to interact with the web service.
 
 Alternatively, users can interact with the API directly. Below are a few examples of how the API endpoints work.
 
-- Check if `5` is prime:
+- Check if `2` is prime:
 
 ```
-curl --request GET "http://127.0.0.1:8080/api/checkprime?input=5"
-# {"input":"5", "status":"true"}
+curl --request GET "http://127.0.0.1:8080/api/checkprime?input=2"
+# {"input":"2", "status":"true"}
  
 ```
 
@@ -43,6 +43,12 @@ curl --request GET "http://127.0.0.1:8080/api/checkprime?input=6"
 ```
 curl --request GET "http://127.0.0.1:8080/api/checkprime?input=wine"
 # {"input":"wine","status":"input must be a number"}
+```
+
+- Argument error:
+```
+curl --request GET "http://127.0.0.1:8080/api/checkprime?input"
+# service unavailable
 ```
 
 ## Testing
