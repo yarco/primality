@@ -45,10 +45,10 @@ curl --request GET "http://127.0.0.1:8080/api/checkprime?input=wine"
 # {"input":"wine","status":"input must be a number"}
 ```
 
-- Argument error:
+- Empty argument handling:
 ```
 curl --request GET "http://127.0.0.1:8080/api/checkprime?input"
-# service unavailable
+# {"input":"null","status":"must not be null"}
 ```
 
 ## Testing

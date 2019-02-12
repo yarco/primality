@@ -55,10 +55,17 @@ public class PrimeCheckerControllerTest extends TestValuesBootstrapper {
     }
 
     @Test
-    public void whenInvalidApiArgument_thenServiceUnavailable() throws Exception {
+    public void whenInvalidApiEndpoint_then404() throws Exception {
+        mockMvc.perform(get("/api/checkprim"))
+                .andExpect(status().is4xxClientError())
+                .andReturn();
+    }
+
+    @Test
+    public void whenInvalidApiArgument_thenClientError() throws Exception {
         mockMvc.perform(get("/api/checkprime"))
-                .andExpect(status().is5xxServerError())
-                .andExpect(content().string("service unavailable"))
+                .andExpect(status().is4xxClientError())
+                .andExpect(content().string("Required BigInteger parameter 'input' is not present"))
                 .andReturn();
     }
 
@@ -74,10 +81,15 @@ public class PrimeCheckerControllerTest extends TestValuesBootstrapper {
 
 
     @Test
-    public void whenMissingApiArgument_thenServiceUnavailable() throws Exception {
+    public void whenMissingApiArgument_thenClientError() throws Exception {
         mockMvc.perform(get("/api/checkprime").param("input", ""))
-                .andExpect(status().is5xxServerError())
-                .andExpect(content().string("service unavailable"))
+                .andExpect(status().is4xxClientError())
+                .andExpect(
+                jsonPath("$.input").
+                        value("null"))
+                .andExpect(
+                jsonPath("$.status").
+                        value("must not be null"))
                 .andReturn();
     }
 
@@ -117,14 +129,12 @@ public class PrimeCheckerControllerTest extends TestValuesBootstrapper {
     }
 
     private ResultActions getResultActions(String input) throws Exception {
-
         ResultActions actions = mockMvc.perform(get("/api/checkprime")
                 .param("input", input))
                 //.andDo(print()) // add this to make output verbose, it needed
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.input").exists())
                 .andExpect(jsonPath("$.status").exists());
-
         return actions;
     }
 }
