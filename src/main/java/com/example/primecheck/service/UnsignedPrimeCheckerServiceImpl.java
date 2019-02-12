@@ -1,17 +1,15 @@
 package com.example.primecheck.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 
 @Service("prototype")
+@AllArgsConstructor
 public class UnsignedPrimeCheckerServiceImpl implements UnsignedPrimeCheckerService {
 
     private PrimeChecker primeChecker;
-
-    public UnsignedPrimeCheckerServiceImpl(PrimeChecker primeChecker) {
-        this.primeChecker = primeChecker;
-    }
 
     @Override
     public boolean isUnsignedPrime(BigInteger num) {

@@ -1,0 +1,2 @@
+## Run tests
+script: "mvn test && mvn verify"

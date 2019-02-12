@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
@@ -36,12 +37,10 @@ public class PrimeCheckerImplTest extends TestValuesBootstrapper {
         executor = Executors.newWorkStealingPool();
         primeChecker = new PrimeCheckerImpl();
 
-        lukasMersennePrimesList = Arrays.asList("131071", "524287", "2147483647").
-                stream().
+        lukasMersennePrimesList = Stream.of("131071", "524287", "2147483647").
                 map(BigInteger::new).
                 collect(Collectors.toList());
-        nonLukasMersennePrimesList = Arrays.asList("11", "23", "29").
-                stream().
+        nonLukasMersennePrimesList = Stream.of("11", "23", "29").
                 map(BigInteger::new).
                 collect(Collectors.toList());
     }

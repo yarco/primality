@@ -2,6 +2,7 @@ package com.example.primecheck.web;
 
 import com.example.primecheck.message.PrimalityResult;
 import com.example.primecheck.service.UnsignedPrimeCheckerService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,13 +19,10 @@ import java.math.BigInteger;
 @Validated
 @Controller
 @RequestMapping("/api")
+@AllArgsConstructor
 public class PrimeCheckerController {
 
     protected UnsignedPrimeCheckerService unsignedPrimeCheckerService;
-
-    public PrimeCheckerController(UnsignedPrimeCheckerService unsignedPrimeCheckerService) {
-        this.unsignedPrimeCheckerService = unsignedPrimeCheckerService;
-    }
 
     @GetMapping(value = "/checkprime")
     @ResponseBody
@@ -32,7 +30,6 @@ public class PrimeCheckerController {
             @Valid()
             @Min(value = 0L, message = "number must be positive")
             @RequestParam("input") BigInteger number) {
-
         boolean isPrime = unsignedPrimeCheckerService.isUnsignedPrime(number);
         return new PrimalityResult(number.toString(), String.valueOf(isPrime));
     }
