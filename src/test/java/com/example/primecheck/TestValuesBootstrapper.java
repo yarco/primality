@@ -49,7 +49,6 @@ public class TestValuesBootstrapper {
             assertThat(jsonArray.getJSONObject(i).has("prime")).isTrue();
             String prime = jsonArray.getJSONObject(i).getString("prime");
             map.put("prime", new BigInteger(prime));
-
             assertThat(jsonArray.getJSONObject(i).has("nonprime")).isTrue();
             String nonprime = jsonArray.getJSONObject(i).getString("nonprime");
             map.put("nonprime", new BigInteger(nonprime));
